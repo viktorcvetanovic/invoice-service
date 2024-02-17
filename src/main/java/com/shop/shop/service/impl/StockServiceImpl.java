@@ -21,7 +21,7 @@ public class StockServiceImpl implements StockService {
         boolean hasQuantity = true;
         for (Item item : itemList) {
             Stock stock = stockRepository.findByItemInfo_Id(item.getItemInfo().getId())
-                    .orElseThrow(NoSuchElementException::new);
+                    .orElseThrow(() -> new NoSuchElementException("There is no stock with that item info id"));
             if (stock.getQuantity() < item.getQuantity()) {
                 return false;
             }
@@ -34,7 +34,7 @@ public class StockServiceImpl implements StockService {
         List<Stock> stockList = itemList.stream().map(item ->
         {
             Stock stock = stockRepository.findByItemInfo_Id(item.getItemInfo().getId())
-                    .orElseThrow(NoSuchElementException::new);
+                    .orElseThrow(() -> new NoSuchElementException("There is no stock with that item info id"));
             stock.setQuantity(stock.getQuantity() - item.getQuantity());
             return stock;
         }).collect(Collectors.toList());

@@ -6,6 +6,7 @@ import com.shop.shop.data.entity.ItemInfo;
 import com.shop.shop.data.entity.Stock;
 import com.shop.shop.data.request.InvoiceRequest;
 import com.shop.shop.data.response.InvoiceResponse;
+import com.shop.shop.exceptions.InternalErrorException;
 import com.shop.shop.mapper.InvoiceMapper;
 import com.shop.shop.repository.InvoiceRepository;
 import com.shop.shop.repository.StockRepository;
@@ -33,7 +34,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         List<Item> itemList = sumItemInfoQuantities(invoice.getItemList());
         invoice.setItemList(itemList);
         if (!stockService.checkItemsQuantity(itemList)) {
-            throw new RuntimeException("There is no enough items in stock");
+            throw new InternalErrorException("There is no enough items in stock");
         }
         stockService.updateItemsQuantity(itemList);
         return invoiceMapper.toResponse(invoiceRepository.save(invoice));

@@ -24,7 +24,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<ItemResponse> getAllDiscountItemsByInvoice(Integer invoiceId) {
         return invoiceRepository.findById(invoiceId)
-                .orElseThrow(NoSuchElementException::new)
+                .orElseThrow(() -> new NoSuchElementException("Item service with that id does not exist"))
                 .getItemList()
                 .stream()
                 .filter(e -> e.getDiscountOnBought() != null && e.getDiscountOnBought() != 0)
