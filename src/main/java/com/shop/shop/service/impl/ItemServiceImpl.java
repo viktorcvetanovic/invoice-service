@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 public class ItemServiceImpl implements ItemService {
     private final ItemRepository itemRepository;
     private final InvoiceRepository invoiceRepository;
-    private final StockRepository stockRepository;
     private final ItemMapper itemMapper;
 
     @Override
@@ -28,15 +27,17 @@ public class ItemServiceImpl implements ItemService {
                 .orElseThrow(NoSuchElementException::new)
                 .getItemList()
                 .stream()
-                .filter(e -> e.getDiscount() != null)
+                .filter(e -> e.getDiscountOnBought() != null && e.getDiscountOnBought() != 0)
                 .map(itemMapper::toResponse)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<ItemResponse> getAllDiscountItems() {
-
-        return null;
+        return itemRepository.findItemsWithNonZeroQuantityAndDiscount()
+                .stream()
+                .map(itemMapper::toResponse)
+                .collect(Collectors.toList());
     }
 
 

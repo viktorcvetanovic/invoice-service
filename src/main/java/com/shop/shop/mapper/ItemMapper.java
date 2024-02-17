@@ -17,11 +17,14 @@ public class ItemMapper {
     private final ItemInfoRepository itemInfoRepository;
 
     public ItemResponse toResponse(Item item){
+        double itemPrice =  item.getItemInfo().getPrice() * item.getQuantity();
         return ImmutableItemResponse
                 .builder()
                 .name(item.getItemInfo().getName())
-                .price(item.getItemInfo().getPrice())
-                .discountValue(item.getDiscount())
+                .price(itemPrice)
+                .discountPercentage(item.getItemInfo().getDiscount())
+                .quantity(item.getQuantity())
+                .discountValue(itemPrice / 100 * item.getItemInfo().getDiscount())
                 .build();
     }
 
@@ -31,7 +34,7 @@ public class ItemMapper {
         ItemInfo itemInfo = itemInfoRepository.findById(itemRequest.itemInfoId())
                 .orElseThrow(() -> new NoSuchElementException("That item is currently not defined"));
         item.setItemInfo(itemInfo);
-        item.setDiscount(itemRequest.discount());
+        item.setQuantity(itemRequest.quantity());
         return item;
     }
 

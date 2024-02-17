@@ -8,7 +8,7 @@ import java.util.List;
 
 @Value.Immutable
 @JsonSerialize(as = ImmutableInvoiceRequest.class)
-@JsonDeserialize(as = ImmutableInvoiceRequest.class)
+@JsonDeserialize(as = ImmutableInvoiceRequest.class,builder = ImmutableInvoiceRequest.Builder.class)
 public interface InvoiceRequest{
     String name();
     List<ItemRequest> itemsList();

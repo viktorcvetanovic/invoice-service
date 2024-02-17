@@ -23,7 +23,7 @@ USE `shop`;
 CREATE TABLE IF NOT EXISTS `invoice` (
   `invoice_id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
-  `name` int(11) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`invoice_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -34,7 +34,8 @@ CREATE TABLE IF NOT EXISTS `item` (
   `item_id` int(11) NOT NULL AUTO_INCREMENT,
   `item_info_fk` int(11) DEFAULT NULL,
   `invoice_fk` int(11) DEFAULT NULL,
-  `discount` int(11) DEFAULT NULL,
+    `quantity` int(11) DEFAULT NULL,
+    `discount_on_bought` int(11) DEFAULT NULL,
   PRIMARY KEY (`item_id`),
   KEY `item_item_info_fk` (`item_info_fk`),
   KEY `item_invoice` (`invoice_fk`),
@@ -49,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `item_info` (
   `item_info_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `price` double DEFAULT NULL,
+    `discount` int(11) DEFAULT 0,
   PRIMARY KEY (`item_info_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 

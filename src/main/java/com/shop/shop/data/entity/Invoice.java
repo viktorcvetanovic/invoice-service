@@ -20,7 +20,7 @@ public class Invoice implements Serializable {
 	private Date date;
 	@Column(name = "name")
 	private String name;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "invoice_fk")
 	private List<Item> itemList;
 

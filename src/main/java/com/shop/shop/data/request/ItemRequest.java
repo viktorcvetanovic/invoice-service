@@ -7,9 +7,9 @@ import org.immutables.value.Value;
 
 @Value.Immutable
 @JsonSerialize(as = ImmutableItemRequest.class)
-@JsonDeserialize(as = ImmutableItemRequest.class)
+@JsonDeserialize(as = ImmutableItemRequest.class,builder = ImmutableItemRequest.Builder.class)
 public interface ItemRequest {
     Integer itemInfoId();
-    Integer discount();
+    Integer quantity();
 
 }

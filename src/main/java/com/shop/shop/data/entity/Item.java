@@ -19,8 +19,10 @@ public class Item implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "item_info_fk", referencedColumnName = "item_info_id")
 	private ItemInfo itemInfo;
-	@Column(name = "discount")
-	private Integer discount;
+	@Column(name = "quantity")
+	private Integer quantity;
+	@Column(name = "discount_on_bought")
+	private Integer discountOnBought;
 	
 	@Override
 	public boolean equals(Object o) {

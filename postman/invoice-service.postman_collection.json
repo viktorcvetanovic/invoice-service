@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "Get items with discount",
+			"name": "Get items on sale",
 			"event": [
 				{
 					"listen": "test",
@@ -69,7 +69,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\" : \"New Invoice\",\n    \"itemsList\" : [\n        {\"itemInfoId\" : 1 , \"discount\": 0},\n        {\"itemInfoId\" : 2 , \"discount\": 0},\n        {\"itemInfoId\" : 3 , \"discount\": 0}\n    ]\n}",
+					"raw": "{\n    \"name\" : \"New Invoice2\",\n    \"itemsList\" : [\n        {\"itemInfoId\" : 1 , \"quantity\":5},\n        {\"itemInfoId\" : 2 , \"quantity\":4},\n        {\"itemInfoId\" : 3 , \"quantity\":2},\n        {\"itemInfoId\":1,\"quantity\":10}\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -89,6 +89,14 @@
 					]
 				},
 				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Get items with discount in invoice",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}

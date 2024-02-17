@@ -20,6 +20,8 @@ public class ItemInfo implements Serializable {
 	private String name;
 	@Column(name = "price")
 	private Double price;
+	@Column(name = "discount")
+	private Integer discount;
 	
 	@Override
 	public boolean equals(Object o) {

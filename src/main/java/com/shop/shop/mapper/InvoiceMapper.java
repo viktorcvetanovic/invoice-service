@@ -17,7 +17,10 @@ public class InvoiceMapper {
 
     public InvoiceResponse toResponse(Invoice invoice) {
         Double entirePrice = invoice.getItemList().stream()
-                .mapToDouble(item -> item.getItemInfo().getPrice())
+                .mapToDouble(item ->{
+                    double itemPrice =item.getItemInfo().getPrice() * item.getQuantity();
+                    return itemPrice - (itemPrice / 100 * item.getItemInfo().getDiscount());
+                } )
                 .sum();
         return ImmutableInvoiceResponse
                 .builder()

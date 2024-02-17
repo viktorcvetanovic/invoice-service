@@ -13,6 +13,10 @@ public interface ItemResponse {
 
     Double price();
 
-    Integer discountValue();
+    Double discountValue();
+
+    Integer discountPercentage();
+
+    Integer quantity();
 
 }
