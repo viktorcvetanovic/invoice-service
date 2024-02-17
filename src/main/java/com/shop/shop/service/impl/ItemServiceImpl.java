@@ -23,6 +23,11 @@ public class ItemServiceImpl implements ItemService {
     private final InvoiceRepository invoiceRepository;
     private final ItemMapper itemMapper;
 
+    /**
+     * Method get all items that are bought and they had discount by invoice.
+     * @param invoiceId id of invoice
+     * @return items
+     */
     @Override
     public List<ItemResponse> getAllDiscountItemsByInvoice(Integer invoiceId) {
         return invoiceRepository.findById(invoiceId)
@@ -34,6 +39,10 @@ public class ItemServiceImpl implements ItemService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * This method will get all items that are currently on sale.
+     * @return list of items info
+     */
     @Override
     public List<ItemInfoResponse> getAllDiscountItems() {
         return itemInfoRepository.findItemsWithNonZeroQuantityAndDiscount()

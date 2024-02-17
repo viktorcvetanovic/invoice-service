@@ -16,6 +16,11 @@ import java.util.stream.Collectors;
 public class StockServiceImpl implements StockService {
     private final StockRepository stockRepository;
 
+    /**
+     * Method used to check if there is enough items in stock.
+     * @param itemList list of items
+     * @return true if there is
+     */
     @Override
     public boolean checkItemsQuantity(List<Item> itemList) {
         boolean hasQuantity = true;
@@ -29,6 +34,10 @@ public class StockServiceImpl implements StockService {
         return hasQuantity;
     }
 
+    /**
+     * Method used to update items quantity.
+     * @param itemList list of items
+     */
     @Override
     public void updateItemsQuantity(List<Item> itemList) {
         List<Stock> stockList = itemList.stream().map(item ->

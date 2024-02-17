@@ -28,6 +28,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     private final StockService stockService;
     private final InvoiceMapper invoiceMapper;
 
+    /**
+     * Method used to save invoice, with logic to combine same items and sum their quantity.
+     * @param invoiceRequest request invoice.
+     * @return saved invoice
+     */
     @Override
     public InvoiceResponse save(InvoiceRequest invoiceRequest) {
         Invoice invoice = invoiceMapper.toInvoice(invoiceRequest);
@@ -41,6 +46,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
 
+    /**
+     * Util method which merge items list and sum their quantity.
+     * @param itemList list of items to be merged
+     * @return merged items with summed quantities
+     */
     private List<Item> sumItemInfoQuantities(List<Item> itemList){
         Map<ItemInfo, Item> itemInfoMap = itemList.stream()
                 .collect(Collectors.toMap(

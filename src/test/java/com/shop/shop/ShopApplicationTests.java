@@ -6,6 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class ShopApplicationTests {
 
+	/**
+	 * Testing if application starts.
+	 */
 	@Test
 	void contextLoads() {
 	}
