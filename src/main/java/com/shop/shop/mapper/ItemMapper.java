@@ -3,7 +3,9 @@ package com.shop.shop.mapper;
 import com.shop.shop.data.entity.Item;
 import com.shop.shop.data.entity.ItemInfo;
 import com.shop.shop.data.request.ItemRequest;
+import com.shop.shop.data.response.ImmutableItemInfoResponse;
 import com.shop.shop.data.response.ImmutableItemResponse;
+import com.shop.shop.data.response.ItemInfoResponse;
 import com.shop.shop.data.response.ItemResponse;
 import com.shop.shop.repository.ItemInfoRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,16 @@ public class ItemMapper {
                 .discountPercentage(item.getItemInfo().getDiscount())
                 .quantity(item.getQuantity())
                 .discountValue(itemPrice / 100 * item.getItemInfo().getDiscount())
+                .build();
+    }
+
+
+    public ItemInfoResponse toResponse(ItemInfo itemInfo){
+        return ImmutableItemInfoResponse
+                .builder()
+                .name(itemInfo.getName())
+                .price(itemInfo.getPrice())
+                .discount(itemInfo.getDiscount())
                 .build();
     }
 

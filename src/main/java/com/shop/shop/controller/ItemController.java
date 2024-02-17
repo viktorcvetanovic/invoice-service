@@ -1,5 +1,6 @@
 package com.shop.shop.controller;
 
+import com.shop.shop.data.response.ItemInfoResponse;
 import com.shop.shop.data.response.ItemResponse;
 import com.shop.shop.service.*;
 import io.swagger.annotations.ApiOperation;
@@ -23,7 +24,7 @@ public class ItemController {
 
 	@GetMapping("/discount")
 	@ApiOperation(value = "", nickname = "getAllDiscountItems")
-	public ResponseEntity<List<ItemResponse>> getAllDiscountItems() {
+	public ResponseEntity<List<ItemInfoResponse>> getAllDiscountItems() {
 		return ResponseEntity.ok(itemService.getAllDiscountItems());
 	}
 

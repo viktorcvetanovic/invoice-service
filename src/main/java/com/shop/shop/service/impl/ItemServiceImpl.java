@@ -1,8 +1,10 @@
 package com.shop.shop.service.impl;
 
+import com.shop.shop.data.response.ItemInfoResponse;
 import com.shop.shop.data.response.ItemResponse;
 import com.shop.shop.mapper.ItemMapper;
 import com.shop.shop.repository.InvoiceRepository;
+import com.shop.shop.repository.ItemInfoRepository;
 import com.shop.shop.repository.ItemRepository;
 import com.shop.shop.repository.StockRepository;
 import com.shop.shop.service.ItemService;
@@ -17,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
-    private final ItemRepository itemRepository;
+    private final ItemInfoRepository itemInfoRepository;
     private final InvoiceRepository invoiceRepository;
     private final ItemMapper itemMapper;
 
@@ -33,8 +35,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<ItemResponse> getAllDiscountItems() {
-        return itemRepository.findItemsWithNonZeroQuantityAndDiscount()
+    public List<ItemInfoResponse> getAllDiscountItems() {
+        return itemInfoRepository.findItemsWithNonZeroQuantityAndDiscount()
                 .stream()
                 .map(itemMapper::toResponse)
                 .collect(Collectors.toList());
