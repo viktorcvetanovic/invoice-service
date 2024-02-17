@@ -28,7 +28,7 @@ public class ItemServiceImpl implements ItemService {
                 .getItemList()
                 .stream()
                 .filter(e -> e.getDiscountOnBought() != null && e.getDiscountOnBought() != 0)
-                .map(itemMapper::toResponse)
+                .map(itemMapper::toResponseWithDiscountOnBought)
                 .collect(Collectors.toList());
     }
 

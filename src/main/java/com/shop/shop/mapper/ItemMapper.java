@@ -28,6 +28,18 @@ public class ItemMapper {
                 .build();
     }
 
+    public ItemResponse toResponseWithDiscountOnBought(Item item){
+        double itemPrice =  item.getItemInfo().getPrice() * item.getQuantity();
+        return ImmutableItemResponse
+                .builder()
+                .name(item.getItemInfo().getName())
+                .price(itemPrice)
+                .discountPercentage(item.getDiscountOnBought())
+                .quantity(item.getQuantity())
+                .discountValue(itemPrice / 100 * item.getDiscountOnBought())
+                .build();
+    }
+
 
     public Item toItem(ItemRequest itemRequest){
         Item item = new Item();
