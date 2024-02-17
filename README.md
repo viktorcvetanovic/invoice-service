@@ -18,13 +18,13 @@ This repository contains a Spring Boot application for managing invoices and ite
 ## Endpoints:
 
 - **Find Invoice Items with Discounts:**
-    - `GET /api/invoices/discounted-items`
+    - `GET /shop/api/items/discount/invoice/${invoiceId}`
 
 - **Create Invoices:**
-    - `POST /api/invoices`
+    - `POST /shop/api/invoices`
 
 - **Find Sale Items in Stock:**
-    - `GET /api/items/sale-and-in-stock`
+    - `GET /shop/api/items/discount`
 
 ## Technologies Used:
 
